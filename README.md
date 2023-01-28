@@ -9,7 +9,7 @@ El script verifica si hay nuevos archivos en una carpeta "logs/", para posterior
 
 al finalizar la ejecución, mueve los archivos procesados a la carpeta "processed_logs/"
 
-##Cosas importantes a cosiderar:
+## Cosas importantes a cosiderar:
  1. El codigó asumen que el script y el directorio de logs se encuentran en el mismo directorio. Asegúrese de ajustar las rutas en consecuencia.
  2. Es mejor utilizar un scheduler como crontab, airflow o incluso una función en la nube para programar este script en lugar de utilizar time.sleep(3600) que hará que el contenedor se ejecute de manera indefinida.
  3. El código anterior funciona mejor en una configuración de clúster. Debido a que el método collect trae todos los datos al nodo del controlador y para grandes conjuntos de datos puede causar problemas de memoria.
@@ -17,12 +17,12 @@ al finalizar la ejecución, mueve los archivos procesados a la carpeta "processe
 
 Se tiene dos soluciones en el repostiorio:
 
-###Solución 1:
+### Solución 1:
 Define funciones para:
  1. get_last_hour_records: para filtrar las conexiones de la última hora
  2. parse_log: utiliza el esquema para leer el archivo CSV, filtra las conexiones de la última hora y genera los informes sobre las conexiones
 
-###Solución 2:
+### Solución 2:
 Define funciones para:
  1. map_csv_data: mapea los datos del archivo CSV a una tupla de (tiempo de epoch, host1, host2)
  2. get_hosts_connections: obtener una lista de nombres de host conectados desde o hacia un host específico en la último hora
