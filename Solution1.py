@@ -16,8 +16,8 @@ schema = StructType([
 ])
 
 def get_last_hour_records(df):
-    now = datetime.datetime(2013, 4, 24, 11, 3, 59, 342380)
-    # now = datetime.datetime.now()
+    # now = datetime.datetime(2013, 4, 24, 11, 3, 59, 342380)
+    now = datetime.datetime.now()
     one_hour_ago = now - datetime.timedelta(hours=1,minutes=5)
     filtered_df = df.filter((col("timestamp") >= one_hour_ago.timestamp()) & (col("timestamp") <= now.timestamp()) ).cache()
     return filtered_df

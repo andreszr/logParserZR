@@ -5,7 +5,8 @@ import shutil
 import time  
 
 # Get the current time
-current_time = datetime(2012, 4, 24, 11, 3, 59, 342380).timestamp()
+# current_time = datetime(2012, 4, 24, 11, 3, 59, 342380).timestamp()
+current_time = datetime.now().timestamp()
 # Get the time one hour ago
 time_one_hour_ago = current_time - 3600
 
@@ -54,10 +55,14 @@ def get_most_connected_host(rdd):
             host_counts[host] += 1
         else:
             host_counts[host] = 1
-    # Find the hostname with the most connections
-    most_connected_host = max(host_counts, key=host_counts.get)
-    # Return the hostname
-    return most_connected_host
+    if host_counts == {}:
+        print(f"there were not connections in the last hours to any hostname")
+        return None
+    else:            
+        # Find the hostname with the most connections
+        most_connected_host = max(host_counts, key=host_counts.get)
+        # Return the hostname
+        return most_connected_host
 
 
 if __name__ == "__main__":
